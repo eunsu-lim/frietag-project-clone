@@ -5,6 +5,7 @@ import NAVIGATION from "./NavListData";
 import styled from "styled-components";
 import { User } from "@styled-icons/boxicons-solid/User";
 import { Search, LocationOn } from "@styled-icons/material";
+import NavLogin from "../Nav/Login";
 
 export default function Nav() {
   const [navList, setNavList] = useState(NAVIGATION);
@@ -25,6 +26,7 @@ export default function Nav() {
           EN
         </span>
       </UserInfo>
+      {!navActive && <NavLogin />}
       <TopSection>
         <li>
           <span>
