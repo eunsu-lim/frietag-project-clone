@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import URL from "../../Config/Url";
+import { URL } from "../../Config/Url";
 import Header from "../../Components/Header/Header";
 import CartItem from "./Component/CarItem";
 import { ShoppingCart } from "@styled-icons/material";
@@ -13,8 +13,8 @@ export default function Cart() {
 
   const handleCount = (id, className, index) => {
     const productsCopy = [...products];
-    const clickedItem = products.find(item => item.product_id === id);
-    const clickedIdx = products.findIndex(item => item.product_id === id);
+    const clickedItem = products.find((item) => item.product_id === id);
+    const clickedIdx = products.findIndex((item) => item.product_id === id);
     productsCopy[clickedIdx] = clickedItem;
 
     if (className === "plusBtn") {
@@ -52,7 +52,7 @@ export default function Cart() {
     } catch (err) {}
 
     const temp = [...products];
-    const filteredItems = temp.filter(item => item.product_id !== id);
+    const filteredItems = temp.filter((item) => item.product_id !== id);
     setProducts(filteredItems);
   };
 

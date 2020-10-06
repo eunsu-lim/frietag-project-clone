@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { PersonFill } from "@styled-icons/bootstrap/PersonFill";
+import { Link } from "react-router-dom";
 import navUseForm from "./useForm";
 import validate from "./loginValidate";
 
@@ -37,7 +38,9 @@ const navLogin = () => {
         <FormLink>Request new password</FormLink>
       </LinkWrap>
       <LinkWrap>
-        <FormLink>Create new account</FormLink>
+        <Link to="/createAccount">
+          <FormLink>Create new account</FormLink>
+        </Link>
       </LinkWrap>
     </Form>
   );
@@ -83,6 +86,11 @@ const Errors = styled.span`
   opacity: 0.8;
 `;
 
+const LinkWrap = styled.div`
+  margin-top: 14px;
+  cursor: pointer;
+`;
+
 const Button = styled.button`
   ${({ theme }) => theme.flex("", "flex-end", "")}
   padding: 10px 20px;
@@ -94,10 +102,9 @@ const Button = styled.button`
   color: #fff;
   background-color: #000;
   cursor: pointer;
-`;
-
-const LinkWrap = styled.div`
-  margin-top: 14px;
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 const FormLink = styled.a`

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { URL } from "../../../Config/Url";
 
 const useForm = (callback, validate) => {
   const history = useHistory();
@@ -21,12 +22,11 @@ const useForm = (callback, validate) => {
 
   const handleSubmit = (e) => {
     const { username, email } = values;
-    e.preventDefault();
-
     setErrors(validate(values));
     setIsSubmmiting(true);
+    e.preventDefault();
 
-    fetch("http://10.58.7.117:8001/user/signup", {
+    fetch(`${URL}/user/signup`, {
       method: "POST",
       body: JSON.stringify({
         name: username,
@@ -37,7 +37,7 @@ const useForm = (callback, validate) => {
       .then((result) => {
         if (result.message === "SUCCESS") {
           alert("이메일을 확인해주세요.");
-          history.push("/myPage");
+          history.push("/");
         } else if (result.message === "DUPLICATED_EMAIL") {
           alert("확인되지 않는 이메일입니다.");
         }

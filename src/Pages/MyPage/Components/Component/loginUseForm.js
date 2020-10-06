@@ -1,13 +1,14 @@
 import { useState, useRef } from "react";
+import { URL } from "../../../../Config/Url";
 
 const useForm = (loginValidate) => {
+  const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState();
   const [values, setValues] = useState({
     email: "",
     password: "",
     comfirmPasseword: "",
   });
-
-  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,18 +16,6 @@ const useForm = (loginValidate) => {
       ...values,
       [name]: value,
     });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setErrors(loginValidate(values));
-
-    fetch("http://10.58.7.117/user/signup", {
-      method: "PETCH",
-      body: JSON.stringify({
-        password: values.password,
-      }),
-    }).then((response) => response.json());
   };
 
   const valuesInput = useRef();
@@ -41,7 +30,37 @@ const useForm = (loginValidate) => {
     valuesInput.current.focus();
   };
 
-  return { handleChange, handleSubmit, values, errors, onReset, valuesInput };
+  const handleSubmit = (e) => {
+    setErrors(loginValidate(values));
+    e.preventDefault();
+
+    fetch(`${URL}/user/signup`, {
+      method: "PATCH",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        password: values.password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.message === "SUCCESS") {
+          onReset(e);
+        }
+        setMessage(result.message);
+      });
+  };
+
+  return {
+    handleChange,
+    handleSubmit,
+    onReset,
+    values,
+    errors,
+    valuesInput,
+    message,
+  };
 };
 
 export default useForm;

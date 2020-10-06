@@ -1,37 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import MY_PAGE_DATA from "./Components/Data/myPageData";
 import MyPageList from "./Components/myPageList";
 import Header from "../../Components/Header/Header";
+import { URL } from "../../Config/Url";
+
 function MyPage() {
+  const USER_NAME = localStorage.getItem("user_name");
   const history = useHistory();
-  const [token, setToken] = useState("");
 
   useEffect(() => {
     const URL = window.location.href;
-    setToken(URL.slice(URL.indexOf("=") + 1));
+    if (!localStorage.getItem("token")) {
+      localStorage.setItem("token", URL.slice(URL.indexOf("=") + 1));
+    }
     history.push("/MyPage");
   }, []);
 
-  const fetchData = () => {
-    localStorage.setItem("token", token);
-    fetch("http://10.58.7.117:8001/user/activate", {
+  useEffect(() => {
+    fetch(`${URL}/user/activate`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
       },
-    }).then((res) => console.log(res));
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.Authorization) {
+          localStorage.setItem("token", result.Authorization);
+        }
+      });
+  }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    history.push("/");
   };
 
-  useEffect(fetchData, [token]);
   return (
     <>
       <Header />
       <Main>
         <MainHeader>
           <div>
-            <h1>HOI KOJAE</h1>
+            <h1>HOI {USER_NAME}</h1>
           </div>
         </MainHeader>
         <Container>
@@ -40,7 +53,7 @@ function MyPage() {
               return <MyPageList el={el} key={index} />;
             })}
             <HowToSwap>HOW TO S.W.A.P</HowToSwap>
-            <LogoutBtn>LOGOUT</LogoutBtn>
+            <LogoutBtn onClick={logout}>LOGOUT</LogoutBtn>
           </Section>
         </Container>
       </Main>
@@ -97,4 +110,5 @@ const LogoutBtn = styled.div`
   font-weight: 500;
   color: white;
   background-color: black;
+  cursor: pointer;
 `;

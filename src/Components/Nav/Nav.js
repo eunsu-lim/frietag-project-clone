@@ -1,23 +1,32 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
 import Footer from "./Footer";
 import NavList from "./NavList";
 import NAVIGATION from "./NavListData";
-import styled from "styled-components";
-import { User } from "@styled-icons/boxicons-solid/User";
-import { Search, LocationOn } from "@styled-icons/material";
 import NavLogin from "../Nav/Login";
+import { Search, LocationOn } from "@styled-icons/material";
+import { User } from "@styled-icons/boxicons-solid/User";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   const navList = NAVIGATION;
-  const [navActive, setNavActive] = useState(false);
+  const [navActive, setNavActive] = useState(true);
+  const USER_NAME = localStorage.getItem("user_name");
 
   return (
     <NavContainer>
       <UserInfo className="login" onClick={() => setNavActive(!navActive)}>
-        <span>
-          <User size="12" />
-          LOGIN
-        </span>
+        {USER_NAME ? (
+          <Link to="/MyPage">
+            <UserName>{USER_NAME}</UserName>
+          </Link>
+        ) : (
+          <span>
+            <User size="12" />
+            LOGIN
+          </span>
+        )}
+
         <span className="language">
           <img
             alt="Korean Flag"
@@ -26,7 +35,7 @@ export default function Nav() {
           EN
         </span>
       </UserInfo>
-      {!navActive && <NavLogin />}
+      {!USER_NAME && !navActive && <NavLogin />}
       <TopSection>
         <li>
           <span>
@@ -88,6 +97,14 @@ const UserInfo = styled.div`
       border: 1px solid #ececec;
     }
   }
+`;
+
+const UserName = styled.p`
+  color: #b2b2b2;
+  font-size: 14px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  font-weight: bold;
 `;
 
 const TopSection = styled.ul`

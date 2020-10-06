@@ -14,11 +14,17 @@ function UserNamePw() {
     values,
     errors,
     valuesInput,
+    message,
   } = loginUseForm(loginValidate);
 
   return (
-    <MypageListInfo>
+    <MypageListInfo onSubmit={handleSubmit}>
       <form>
+        {message === "SUCCESS" && (
+          <SuccsssMessage>
+            Your user profile has succssfully been updated !
+          </SuccsssMessage>
+        )}
         <Label>E-mail</Label>
         <Input
           type="text"
@@ -49,7 +55,7 @@ function UserNamePw() {
           Korean
           <DownArrowAlt width="20px" />
         </LocateList>
-        <FormSubmitBtn onClick={handleSubmit}>
+        <FormSubmitBtn>
           <Save width="20px" color="white" />
           &nbsp;SAVE CHANGES
         </FormSubmitBtn>
@@ -67,6 +73,14 @@ const MypageListInfo = styled.div`
   width: 94%;
   margin-right: -100%;
   margin-left: 0;
+`;
+
+const SuccsssMessage = styled.p`
+  padding: 0.25em 0.5em;
+  border: 2px solid #adc088;
+  margin: 0.5em 0;
+  line-height: 24px;
+  font-size: 19px;
 `;
 
 const Label = styled.label`
