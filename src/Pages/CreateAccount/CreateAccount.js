@@ -14,7 +14,7 @@ function CreateAccount() {
             </General>
           </Header>
           <Section>
-            <h1>WELCOME TO THE F-AMILY</h1>
+            <h1 primary>WELCOME TO THE F-AMILY</h1>
             <div>
               <Label for="userName">Username</Label>
               <input id="userName" />
@@ -26,14 +26,18 @@ function CreateAccount() {
             <div>
               <Label for="email">E-mail address</Label>
               <input id="email" />
-              <ExclamationCircleFill color="red" width="20px" />
-              <span>E-mail address field is required.</span>
+              <Alert>
+                <ExclamationCircleFill color="red" width="20px" />
+                <span>E-mail address field is required.</span>
+              </Alert>
             </div>
             <div>
               <Label for="confirmEmail">Confirm e-mail address</Label>
               <input id="confirmEmail" />
-              <ExclamationCircleFill color="red" width="20px" />
-              <span>Confirm e-mail address field is required.</span>
+              <Alert>
+                <ExclamationCircleFill color="red" width="20px" />
+                <span>Confirm e-mail address field is required.</span>
+              </Alert>
             </div>
             <p>
               You will be able to set your password after you've confirmed your
@@ -54,10 +58,11 @@ function CreateAccount() {
 
 export default CreateAccount;
 
-const flexBox = (justify, align) => css`
+const flexBox = (justify, align, content) => css`
   display: flex;
   justify-content: ${justify || "default"};
   align-items: ${align || "default"};
+  align-content: ${content || "default"};
 `;
 
 const Main = styled.main`
@@ -88,6 +93,7 @@ const General = styled.div`
 
 const Section = styled.section`
   padding: 30px 20px;
+
   h1 {
     margin: 1rem 0;
     font-size: 60px;
@@ -99,6 +105,7 @@ const Section = styled.section`
   }
   div {
     margin-bottom: 20px;
+
     input {
       margin-right: 20px;
     }
@@ -120,7 +127,9 @@ const Label = styled.label`
 `;
 
 const Alert = styled.span`
-  /* ${flexBox("center", "center")}; */
+  span {
+    padding-left: 5px;
+  }
 `;
 
 const FormSumit = styled.div`
