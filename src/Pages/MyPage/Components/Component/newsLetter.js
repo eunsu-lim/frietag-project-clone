@@ -1,22 +1,20 @@
-import LETTER_DATA from "../Data/newsLetterData";
 import React, { Fragment } from "react";
 import styled, { css } from "styled-components";
 import { DownArrowAlt } from "@styled-icons/boxicons-solid/DownArrowAlt";
+import LETTER_DATA from "../Data/newsLetterData";
 
 function NewLetter() {
   return (
-    <>
-      <MypageListInfo>
-        {LETTER_DATA.map((el) => {
-          return (
-            <Fragment key={el.id}>
-              <NewsLetterInfo>{el.name}</NewsLetterInfo>
-              <div>{INPUT[el.id]}</div>
-            </Fragment>
-          );
-        })}
-      </MypageListInfo>
-    </>
+    <MypageListInfo>
+      {LETTER_DATA.map((el) => {
+        return (
+          <Fragment key={el.id}>
+            <NewsLetterInfo>{el.name}</NewsLetterInfo>
+            <div>{INPUT[el.id]}</div>
+          </Fragment>
+        );
+      })}
+    </MypageListInfo>
   );
 }
 export default NewLetter;

@@ -8,11 +8,12 @@ import { Search, LocationOn } from "@styled-icons/material";
 
 export default function Nav() {
   const [navList, setNavList] = useState(NAVIGATION);
+  const [navActive, setNavActive] = useState(false);
 
   return (
     <NavContainer>
-      <UserInfo>
-        <span className="login">
+      <UserInfo className="login" onClick={() => setNavActive(!navActive)}>
+        <span>
           <User size="12" />
           LOGIN
         </span>
@@ -63,7 +64,7 @@ const UserInfo = styled.div`
   width: 299px;
   height: 50px;
   padding: 17px 20px 13px 20px;
-
+  cursor: pointer;
   span {
     ${({ theme }) => theme.flex("space-between", "center", "")}
     font-weight: 600;

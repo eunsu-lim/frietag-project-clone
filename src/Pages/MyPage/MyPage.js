@@ -1,6 +1,6 @@
 import React from "react";
-import MY_PAGE_DATA from "./Components/Data/myPageData";
 import styled from "styled-components";
+import MY_PAGE_DATA from "./Components/Data/myPageData";
 import MyPageList from "./Components/myPageList";
 
 function MyPage() {
@@ -15,11 +15,7 @@ function MyPage() {
         <Container>
           <Section>
             {MY_PAGE_DATA.map((el, index) => {
-              return (
-                <>
-                  <MyPageList el={el} key={index} />
-                </>
-              );
+              return <MyPageList el={el} key={index} />;
             })}
             <HowToSwap>HOW TO S.W.A.P</HowToSwap>
             <LogoutBtn>LOGOUT</LogoutBtn>
