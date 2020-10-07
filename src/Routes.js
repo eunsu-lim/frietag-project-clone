@@ -9,6 +9,7 @@ import ProductList from "./Pages/ProductList/ProductList";
 import Store from "./Pages/Store/Store";
 import StoreDetail from "./Pages/Store/StoreDetail";
 import Main from "./Pages/Main/Main";
+import Test from "./Pages/ReducerTest/Test";
 
 function Routes() {
   return (
@@ -24,6 +25,7 @@ function Routes() {
         <Route exact path="/StoreDetail" component={StoreDetail} />
         <Route exact path="/StoreDetail/:id" component={StoreDetail} />
         <Route exact path="/" component={Main} />
+        <Route exact path="/test" component={Test} />
       </Switch>
     </Router>
   );
