@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from "react";
-import Account from "./Pages/Account/Account";
+import CreateAccount from "./Pages/CreateAccount/CreateAccount";
 import Cart from "./Pages/Cart/Cart";
 import MyPage from "./Pages/MyPage/MyPage";
 import Payment from "./Pages/Payment/Payment";
@@ -11,7 +11,7 @@ function Routes() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/Account" component={Account} />
+        <Route exact path="/CreateAccount" component={CreateAccount} />
         <Route exact path="/Cart" component={Cart} />
         <Route exact path="/MyPage" component={MyPage} />
         <Route exact path="/Payment" component={Payment} />
