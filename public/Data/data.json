@@ -1,0 +1,106 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "category": "APPAREL MALE",
+      "title": "E783",
+      "subTitle": "MALE SHIRT",
+      "price": "￦241,000",
+      "sub": [
+        {
+          "id": 1,
+          "title": "shirt",
+          "color": "black",
+          "url": "https://images.unsplash.com/photo-1524275539700-cf51138f679b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 2,
+          "title": "shirt",
+          "color": "brown",
+          "url": "https://images.unsplash.com/photo-1588795926085-3d920a7e5a9c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 3,
+          "title": "shirt",
+          "color": "green",
+          "url": "https://images.unsplash.com/photo-1524275539700-cf51138f679b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 4,
+          "title": "shirt",
+          "color": "grey",
+          "url": "https://images.unsplash.com/photo-1588795926085-3d920a7e5a9c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 5,
+          "title": "shirt",
+          "color": "white",
+          "url": "https://images.unsplash.com/photo-1524275539700-cf51138f679b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 6,
+          "title": "shirt",
+          "color": "navy",
+          "url": "https://images.unsplash.com/photo-1588795926085-3d920a7e5a9c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 7,
+          "title": "shirt",
+          "color": "yellow",
+          "url": "https://images.unsplash.com/photo-1524275539700-cf51138f679b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "E905",
+      "subTitle": "CRAVATE",
+      "price": "￦96,000",
+      "sub": [
+        {
+          "id": 1,
+          "title": "bag",
+
+          "color": "black",
+          "url": "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 2,
+          "title": "bag",
+          "color": "brown",
+          "url": "https://images.unsplash.com/photo-1583623733237-4d5764a9dc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+        },
+        {
+          "id": 3,
+          "title": "bag",
+          "color": "green",
+          "url": "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 4,
+          "title": "bag",
+          "color": "grey",
+          "url": "https://images.unsplash.com/photo-1583623733237-4d5764a9dc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+        },
+        {
+          "id": 5,
+          "title": "bag",
+          "color": "white",
+          "url": "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        },
+        {
+          "id": 6,
+          "title": "bag",
+          "color": "navy",
+          "url": "https://images.unsplash.com/photo-1583623733237-4d5764a9dc82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+        },
+        {
+          "id": 7,
+          "title": "bag",
+          "color": "yellow",
+          "url": "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        }
+      ]
+    }
+  ]
+}
