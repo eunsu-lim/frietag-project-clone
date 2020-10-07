@@ -1,5 +1,4 @@
 import React from "react";
-import "./CreateAccount.scss";
 import styled, { css } from "styled-components";
 import { Person } from "@styled-icons/bootstrap/Person";
 import { ExclamationCircleFill } from "@styled-icons/bootstrap/ExclamationCircleFill";
