@@ -1,9 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 export default function SubCategory({ subcategory }) {
+  const history = useHistory();
+
+  const linkToList = (e) => {
+    e === "T-SHIRTS" && history.push("/Productlist");
+  };
+
   return (
-    <SubTitle key={subcategory.id}>
+    <SubTitle
+      onClick={() => linkToList(subcategory.title)}
+      key={subcategory.id}
+    >
       <h5>{subcategory.title}</h5>
     </SubTitle>
   );

@@ -1,43 +1,32 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Nav from "../Nav/Nav";
-import CartNav from "../Nav/CartNav";
+import { Link } from "react-router-dom";
 import { MenuOutline } from "@styled-icons/evaicons-outline/MenuOutline";
 import { ShoppingCart } from "@styled-icons/material/ShoppingCart";
 import { BellRing } from "@styled-icons/boxicons-solid/BellRing";
 
 export default function Header() {
   const [isNav, setIsNav] = useState(false);
-  const [isCartNav, setCartNav] = useState(false);
 
   return (
     <Main>
       <HeaderContainer>
         <Logo />
-        <IconBox
-          menu
-          onClick={() => {
-            setIsNav(!isNav);
-          }}
-          isNav={isNav}
-        >
+        <IconBox menu onClick={() => setIsNav(!isNav)} isNav={isNav}>
           <MenuOutline size="24" />
         </IconBox>
-        <IconBoxCart
-          onClick={() => {
-            setCartNav(!isCartNav);
-          }}
-          isCartNav={isCartNav}
-        >
-          <span>1</span>
-          <ShoppingCart size="22" />
-        </IconBoxCart>
+        <Link to="/Cart">
+          <IconBoxCart>
+            <span>1</span>
+            <ShoppingCart size="22" />
+          </IconBoxCart>
+        </Link>
         <IconBox>
           <BellRing size="18" color="white" />
         </IconBox>
       </HeaderContainer>
       {isNav && <Nav />}
-      {isCartNav && <CartNav />}
     </Main>
   );
 }
@@ -75,13 +64,13 @@ const IconBoxCart = styled.div`
   ${({ theme }) => theme.flex("center", "center", "")}
   width: 50px;
   height: 50px;
-  background-color: ${(props) => (props.isCartNav ? "white" : "#666")};
-  color: ${(props) => (props.isCartNav ? "black" : "white")};
+  background-color: #666;
+  color: white;
   &:hover {
     cursor: pointer;
   }
   span {
-    color: ${(props) => (props.isCartNav ? "black" : "white")};
+    color: white;
     font-size: 13px;
     font-weight: 500;
   }

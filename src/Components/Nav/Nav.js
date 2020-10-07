@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Footer from "./Footer";
 import NavList from "./NavList";
 import NAVIGATION from "./NavListData";
@@ -8,7 +8,7 @@ import { Search, LocationOn } from "@styled-icons/material";
 import NavLogin from "../Nav/Login";
 
 export default function Nav() {
-  const [navList, setNavList] = useState(NAVIGATION);
+  const navList = NAVIGATION;
   const [navActive, setNavActive] = useState(false);
 
   return (
