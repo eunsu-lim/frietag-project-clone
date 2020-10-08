@@ -6,7 +6,7 @@ import MyPage from "./Pages/MyPage/MyPage";
 import Payment from "./Pages/Payment/Payment";
 import Product from "./Pages/Product/Product";
 import ProductList from "./Pages/ProductList/ProductList";
-// import Main from "./Pages/Main/Main";
+//import Main from "./Pages/Main/Main";
 
 function Routes() {
   return (

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Nav from "../Nav/Nav";
+import CartNav from "../Nav/CartNav";
 import { MenuOutline } from "@styled-icons/evaicons-outline/MenuOutline";
 import { ShoppingCart } from "@styled-icons/material/ShoppingCart";
 import { BellRing } from "@styled-icons/boxicons-solid/BellRing";
 
 export default function Header() {
-  const [isNav, setIsNav] = useState(true);
+  const [isNav, setIsNav] = useState(false);
+  const [isCartNav, setCartNav] = useState(false);
 
   return (
     <Main>
@@ -21,21 +23,28 @@ export default function Header() {
         >
           <MenuOutline size="24" />
         </IconBox>
-        <IconBox>
+        <IconBoxCart
+          onClick={() => {
+            setCartNav(!isCartNav);
+          }}
+          isCartNav={isCartNav}
+        >
           <span>1</span>
-          <ShoppingCart size="22" color="white" />
-        </IconBox>
+          <ShoppingCart size="22" />
+        </IconBoxCart>
         <IconBox>
           <BellRing size="18" color="white" />
         </IconBox>
       </HeaderContainer>
       {isNav && <Nav />}
+      {isCartNav && <CartNav />}
     </Main>
   );
 }
 
 const Main = styled.main`
   position: relative;
+  position: fixed;
 `;
 
 const HeaderContainer = styled.header`
@@ -57,6 +66,22 @@ const IconBox = styled.div`
   }
   span {
     color: white;
+    font-size: 13px;
+    font-weight: 500;
+  }
+`;
+
+const IconBoxCart = styled.div`
+  ${({ theme }) => theme.flex("center", "center", "")}
+  width: 50px;
+  height: 50px;
+  background-color: ${(props) => (props.isCartNav ? "white" : "#666")};
+  color: ${(props) => (props.isCartNav ? "black" : "white")};
+  &:hover {
+    cursor: pointer;
+  }
+  span {
+    color: ${(props) => (props.isCartNav ? "black" : "white")};
     font-size: 13px;
     font-weight: 500;
   }

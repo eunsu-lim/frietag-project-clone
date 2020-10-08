@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-export default function Counter() {
-  const [count, setCount] = useState(1);
-
-  const minusCount = () => {
-    setCount((prevNum) => prevNum - 1);
-  };
-
-  const plusCount = () => {
-    setCount((prevNum) => prevNum + 1);
-  };
-
+export default function Counter({ id, handleCount, count }) {
   return (
     <ProductCount>
-      <button onClick={minusCount} className="minusBtn"></button>
+      <button
+        onClick={() => handleCount(id, "minusBtn")}
+        disabled={count <= 1 && "disabled"}
+        className="minusBtn"
+      ></button>
       <span>{count}</span>
-      <button onClick={plusCount} className="plusBtn"></button>
+      <button
+        onClick={() => handleCount(id, "plusBtn")}
+        className="plusBtn"
+      ></button>
     </ProductCount>
   );
 }
@@ -47,6 +44,9 @@ const ProductCount = styled.div`
       width: 12px;
       height: 2px;
       background-color: #666;
+      &:disabled {
+        color: #ccc;
+      }
     }
     &.plusBtn {
       &:after {
@@ -61,10 +61,18 @@ const ProductCount = styled.div`
         background-color: #666;
       }
     }
+    &:disabled {
+      border: 1px solid #ccc;
+      &:before {
+        background-color: #ccc;
+      }
+    }
   }
   span {
     width: 28px;
     text-align: center;
     font-size: 16px;
+    border: none;
+    outline: none;
   }
 `;

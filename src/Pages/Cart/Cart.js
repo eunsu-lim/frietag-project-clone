@@ -1,37 +1,73 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Header from "../../Components/Header/Header";
 import CartItem from "./Component/CarItem";
 import styled from "styled-components";
 import { ShoppingCart } from "@styled-icons/material";
 
 export default function Cart() {
   const [products, setProducts] = useState([]);
+  const [price, setTotalPrice] = useState(0);
+  const [amount, setTotalAmount] = useState(0);
+
+  const handleCount = (id, className) => {
+    const productsCopy = products;
+    const clickedItem = products.find((item) => item.id === id);
+    const clickedIdx = products.findIndex((item) => item.id === id);
+    productsCopy[clickedIdx] = clickedItem;
+    if (className === "plusBtn") {
+      clickedItem.count++;
+      setProducts([...productsCopy]);
+    } else {
+      clickedItem.count--;
+      setProducts([...productsCopy]);
+    }
+  };
 
   useEffect(() => {
-    fetch("http://localhost:3000/Data/CartData.json")
-      .then((response) => response.json())
-      .then((res) => {
-        console.log("res", res);
-        console.log("res.products", res.product);
-        setProducts(res.product);
-      });
+    const fetchData = async () => {
+      const result = await axios(`http://localhost:3000/Data/CartData.json`);
+      setProducts(result.data.product);
+    };
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    const price = products.reduce((acc, item) => {
+      return acc + item.count * item.price;
+    }, 0);
+    setTotalPrice(price);
+  }, [products]);
+
+  useEffect(() => {
+    const amount = products.reduce((acc, item) => {
+      return acc + item.count;
+    }, 0);
+    setTotalAmount(amount);
+  }, [products]);
 
   return (
     <CartContainer>
+      <Header />
       <CartBox>
         <CartTitle>SHOPPING CART</CartTitle>
-        <CartCount>7 Items</CartCount>
+        <CartCount>{amount} Items</CartCount>
         <CartList>
-          {products.map((el) => {
-            console.log(el.sub);
+          {products.map((cartProduct) => {
             return (
-              <CartItem key={el.id} product={el.title} productList={el.sub} />
+              <CartItem
+                key={cartProduct.id}
+                product={cartProduct}
+                handleCount={(id, className) => handleCount(id, className)}
+                products={products}
+                setProducts={setProducts}
+              />
             );
           })}
         </CartList>
         <CartTotal>
           <CartText>TOTAL</CartText>
-          <TotalPrice>₩ 3,260,000</TotalPrice>
+          <TotalPrice>₩ {price.toLocaleString()}</TotalPrice>
         </CartTotal>
         <CartBottom>
           <Back>← BACK TO STORE</Back>
@@ -46,13 +82,12 @@ export default function Cart() {
 }
 
 const CartContainer = styled.section`
-  margin-top: 100px;
   width: 100%;
 `;
 
 const CartBox = styled.div`
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 100px 20px 0;
   width: 1170px;
 `;
 

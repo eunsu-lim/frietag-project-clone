@@ -3,24 +3,37 @@ import ProductCount from "./ProductCount";
 import styled from "styled-components";
 import { Delete } from "@styled-icons/material";
 
-export default function CarItem(props) {
-  console.log("props", props);
-  const cartItemList = props;
+export default function CarItem({
+  product,
+  handleCount,
+  products,
+  setProducts,
+}) {
+  const handleRemove = (id) => {
+    const temp = products;
+    const removeItem = temp.filter((item) => item.id !== id);
+    setProducts(removeItem);
+  };
+
   return (
     <CartItem>
-      {cartItemList.productList.map((el) => {
-        return (
-          <CartItemBox key={el.id}>
-            <ProductName>{el.title}</ProductName>
-            <ProductImgBox>
-              <ProductImg src={el.url} />
-            </ProductImgBox>
-            <ProductCount />
-            <ProductPrice>₩ {el.price}</ProductPrice>
-            <ProductDel />
-          </CartItemBox>
-        );
-      })}
+      <CartItemBox>
+        <ProductName>
+          {product.title} - {product.size}
+        </ProductName>
+        <ProductImgBox>
+          <ProductImg src={product.url} />
+        </ProductImgBox>
+        <ProductCount
+          count={product.count}
+          handleCount={handleCount}
+          id={product.id}
+        />
+        <ProductPrice>
+          ₩ {(product.count * product.price).toLocaleString()}
+        </ProductPrice>
+        <ProductDel onClick={() => handleRemove(product.id)} />
+      </CartItemBox>
     </CartItem>
   );
 }
@@ -51,6 +64,7 @@ const ProductImgBox = styled.div`
 const ProductImg = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 const ProductPrice = styled.span`
