@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { MdFilterCenterFocus } from "react-icons/md";
 
-function Title(props) {
+function Title({ productCategory, categoryName, toggleFilter }) {
+  const [isFilter, setIsFilter] = useState(false);
+
   return (
     <HeaderContainer>
       <HeaderTopLeft>
@@ -14,13 +16,18 @@ function Title(props) {
         <span> » </span>
         <span>
           <a href="#/" alt="hi">
-            {props.productCategory}
+            {productCategory}
           </a>
         </span>
       </HeaderTopLeft>
       <HeaderLeftRight>
-        <HeaderLeft>Shirts</HeaderLeft>
-        <HeaderRight>
+        <HeaderLeft>{categoryName}</HeaderLeft>
+        <HeaderRight
+          onClick={() => {
+            setIsFilter(!isFilter);
+            toggleFilter(isFilter);
+          }}
+        >
           <MdFilterCenterFocus size="17" />
           Filters
         </HeaderRight>
@@ -39,6 +46,13 @@ const HeaderContainer = styled.header`
 
 const HeaderTopLeft = styled.div`
   font-size: 14px;
+
+  a:hover {
+    color: gray;
+    span {
+      color: black;
+    }
+  }
 
   span:nth-child(2) {
     font-size: 20px;

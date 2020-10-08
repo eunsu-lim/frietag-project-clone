@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 function Title() {
+  const [allItem, setAllItem] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://10.58.3.66:8000/product/${id}`)
+      .then(response => response.json())
+      .then(res => {
+        setAllItem(res);
+      });
+  }, []);
+
   return (
     <HeaderContainer>
       <HeaderTopLeft>
@@ -13,26 +26,26 @@ function Title() {
         <span> » </span>
         <span>
           <a href="#/" alt="hi">
-            Apparel male
+            Apparel Female
           </a>
         </span>
         <span> » </span>
         <span>
-          <a href="#/" alt="hi">
-            Shirts
-          </a>
+          <Link to="/productlist" alt="productlist">
+            T-Shirts
+          </Link>
         </span>
       </HeaderTopLeft>
-      <HeaderLeft>E783</HeaderLeft>
+      <HeaderLeft>{allItem.title}</HeaderLeft>
       <HeaderBottomLeft>
-        <h3>MALE SHIRT ₩241,000</h3>
-        <span>THE FREE SHIRT</span>
+        <h3>FEMALE SCOOP NECK, ￦{allItem.price}</h3>
+        <span> {allItem.description}</span>
       </HeaderBottomLeft>
     </HeaderContainer>
   );
 }
 
-export default Title;
+export default withRouter(Title);
 
 const HeaderContainer = styled.header`
   padding-top: 100px;
@@ -44,6 +57,13 @@ const HeaderContainer = styled.header`
 
 const HeaderTopLeft = styled.div`
   font-size: 14px;
+
+  a:hover {
+    color: gray;
+    span {
+      color: black;
+    }
+  }
 
   span:nth-child(2),
   span:nth-child(4) {
@@ -64,5 +84,19 @@ const HeaderBottomLeft = styled.article`
   span {
     font-weight: 300;
     font-size: 19px;
+  }
+`;
+
+const LoadingImage = styled.div`
+  display: flex;
+  width: 100%;
+  height: 80%;
+  margin-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 200px;
+    height: auto;
   }
 `;

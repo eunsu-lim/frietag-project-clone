@@ -1,34 +1,52 @@
 import React from "react";
 import styled from "styled-components";
-import { MdAutorenew } from "react-icons/md";
-import { MdRemoveRedEye } from "react-icons/md";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { MdAutorenew, MdRemoveRedEye } from "react-icons/md";
 import { IoMdMan } from "react-icons/io";
 
-function DetailLeft() {
+function DetailLeft({ url }) {
+  const settings = {
+    arrows: false,
+    dotsClass: "slick-dots slick-thumb",
+    dots: true,
+    infinite: true,
+    speed: 550,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <LeftBox>
       <Nav>
         <ProductSlick>
           <MdAutorenew size="24" />
-          <SliceName>PRODUCT</SliceName>
+          <SlickName>PRODUCT</SlickName>
         </ProductSlick>
         <ProductSlick>
           <MdRemoveRedEye size="24" />
-          <SliceName>DETAILS</SliceName>
+          <SlickName>DETAILS</SlickName>
         </ProductSlick>
         <ProductSlick>
           <IoMdMan size="24" />
-          <SliceName>STYLE</SliceName>
+          <SlickName>STYLE</SlickName>
         </ProductSlick>
       </Nav>
-      <Picture>
-        <a href="#/">
+      <Slider {...settings}>
+        <Picture>
           <ProductImg
-            src="https://freitag.rokka.io/neo-grid-2/7c6e096f36e5871b8940195f33aff2a8992c9a03/e783-male-shirt-black-lindasuter-rgb-highres.jpg"
-            alt=""
+            src={`https://ifh.cc/g/${url[0].split("-")[1]}`}
+            alt="T-shirts"
           />
-        </a>
-      </Picture>
+        </Picture>
+        <Picture>
+          <ProductImg
+            src={`https://ifh.cc/g/${url[1].split("-")[1]}`}
+            alt="T-shirts"
+          />
+        </Picture>
+      </Slider>
     </LeftBox>
   );
 }
@@ -42,8 +60,7 @@ const LeftBox = styled.section`
 
 const Nav = styled.nav`
   display: flex;
-
-  padding: 10px;
+  padding: 20px 10px 20px 10px;
 `;
 
 const ProductSlick = styled.div`
@@ -52,13 +69,15 @@ const ProductSlick = styled.div`
   width: 27%;
 `;
 
-const SliceName = styled.span`
+const SlickName = styled.span`
   font-size: 12px;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 const Picture = styled.section``;
 
 const ProductImg = styled.img`
   width: 452px;
+  height: 452px;
 `;

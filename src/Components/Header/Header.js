@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Nav from "../Nav/Nav";
+import Filter from "../Filter/Filter";
 import { Link } from "react-router-dom";
 import { MenuOutline } from "@styled-icons/evaicons-outline/MenuOutline";
 import { ShoppingCart } from "@styled-icons/material/ShoppingCart";
 import { BellRing } from "@styled-icons/boxicons-solid/BellRing";
 
-export default function Header() {
+export default function Header({ openFilter, filterHandler, removeAllItems }) {
   const [isNav, setIsNav] = useState(false);
+  const [isFilter, setIsFilter] = useState(true);
+  useEffect(() => {
+    setIsFilter(!isFilter);
+  }, [openFilter]);
 
   return (
     <Main>
@@ -22,11 +27,14 @@ export default function Header() {
             <ShoppingCart size="22" />
           </IconBoxCart>
         </Link>
-        <IconBox>
+        <IconBox onClick={() => setIsFilter(!isFilter)}>
           <BellRing size="18" color="white" />
         </IconBox>
       </HeaderContainer>
       {isNav && <Nav />}
+      {isFilter && (
+        <Filter filterHandler={filterHandler} removeAllItems={removeAllItems} />
+      )}
     </Main>
   );
 }
@@ -48,8 +56,8 @@ const IconBox = styled.div`
   ${({ theme }) => theme.flex("center", "center", "")}
   width: 50px;
   height: 50px;
-  background-color: ${(props) => (props.isNav ? "white" : "#666")};
-  color: ${(props) => (props.isNav ? "black" : "white")};
+  background-color: ${props => (props.isNav ? "white" : "#666")};
+  color: ${props => (props.isNav ? "black" : "white")};
   &:hover {
     cursor: pointer;
   }

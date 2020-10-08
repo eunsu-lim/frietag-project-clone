@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 function DropDown() {
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleChange = e => {
+    setSelectedOption(e.target.value);
+  };
+
+  useEffect(() => {}, [selectedOption]);
+
   return (
     <SizeContainer>
       <SizeLabel>Size</SizeLabel>
       <div>
-        <SizeSelector name="" id="">
+        <SizeSelector onChange={handleChange} name="" id="">
           {dropDownOptions.map(el => (
-            <option value="">{el.value}</option>
+            <option value={el.value}>{el.value}</option>
           ))}
         </SizeSelector>
       </div>
@@ -21,22 +29,31 @@ export default DropDown;
 const SizeContainer = styled.div`
   margin-bottom: 20px;
 `;
-
 const SizeLabel = styled.label`
+  display: block;
+  margin-bottom: 10px;
   font-size: 14px;
   font-weight: bold;
 `;
 
 const SizeSelector = styled.select`
+  height: auto;
+  margin-bottom: 10px;
   border: none;
   border-bottom: 2px solid #000;
   border-radius: 0;
-  padding: 0;
-  height: auto;
   background-color: transparent;
-  box-shadow: none;
   border-radius: 0;
   font-size: 18px;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+
+  &:focus {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+  }
 `;
 
 const dropDownOptions = [

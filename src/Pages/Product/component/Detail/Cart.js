@@ -1,26 +1,37 @@
 import React, { useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
-import { FiPlusSquare } from "react-icons/fi";
-import { FiMinusSquare } from "react-icons/fi";
+import { FiPlusSquare, FiMinusSquare } from "react-icons/fi";
 import styled from "styled-components";
 
 function Cart() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const increment = () => {
     setCount(count + 1);
   };
 
   const decrement = () => {
-    setCount(count - 1);
+    if (count > 1) {
+      setCount(count - 1);
+    } else {
+      alert("COME ON, WAKE UP!");
+    }
   };
 
   return (
     <div>
       <ProductCount>
-        <FiPlusSquare onClick={increment} size="35" />
+        <FiMinusSquare
+          style={{ cursor: "pointer" }}
+          onClick={decrement}
+          size="35"
+        />
         <ProductNumber>{count}</ProductNumber>
-        <FiMinusSquare onClick={decrement} size="35" />
+        <FiPlusSquare
+          style={{ cursor: "pointer" }}
+          onClick={increment}
+          size="35"
+        />
       </ProductCount>
       <CartBtn>
         <HiShoppingCart size="25" />
@@ -55,4 +66,8 @@ const CartBtn = styled.button`
   font-weight: 600;
   outline: none;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
 `;

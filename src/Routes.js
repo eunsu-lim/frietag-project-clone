@@ -20,6 +20,7 @@ function Routes() {
         <Route exact path="/MyPage" component={MyPage} />
         <Route exact path="/Payment" component={Payment} />
         <Route exact path="/Product" component={Product} />
+        <Route exact path="/Product/:id" component={Product} />
         <Route exact path="/ProductList" component={ProductList} />
         <Route exact path="/Store" component={Store} />
         <Route exact path="/StoreDetail" component={StoreDetail} />

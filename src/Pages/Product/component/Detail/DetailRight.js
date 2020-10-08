@@ -4,14 +4,21 @@ import DropDown from "./DropDown";
 import Cart from "./Cart";
 import styled from "styled-components";
 
-function DetailRight() {
+function DetailRight({ product, allItem, url, items }) {
   return (
     <RightBox>
       <Header>
-        <h3>MALE SHIRT</h3>
-        <span>THE FREE SHIRT, ₩241,000</span>
+        <h3>{allItem.name}</h3>
+        <span>
+          {allItem.description}, ￦{allItem.price}
+        </span>
       </Header>
-      <SelectColor />
+      <SelectColor
+        productId={allItem.id}
+        allItem={allItem}
+        url={url}
+        items={items}
+      />
       <DropDown />
       <Cart />
     </RightBox>
@@ -22,7 +29,7 @@ export default DetailRight;
 
 const RightBox = styled.section`
   width: 60%;
-  padding: 40px 10px 10px 10px;
+  padding: 60px 10px 10px 10px;
 `;
 
 const Header = styled.header`

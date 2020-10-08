@@ -27,7 +27,7 @@ export default function NavList({ category, index }) {
         )}
       </TopCategory>
       {navActive &&
-        category.subcategory?.map((list) =>
+        category.subcategory?.map(list =>
           category.category === "SHOP" ? (
             <DropDown key={list.id} subcategory={list} />
           ) : (
