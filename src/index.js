@@ -132,8 +132,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap");
-    font-family: "Noto Sans KR", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 `;
 

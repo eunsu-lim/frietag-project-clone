@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import LETTER_DATA from "../Data/newsLetterData";
+import React, { Fragment } from "react";
 import styled, { css } from "styled-components";
 import { DownArrowAlt } from "@styled-icons/boxicons-solid/DownArrowAlt";
 
@@ -6,45 +7,14 @@ function NewLetter() {
   return (
     <>
       <MypageListInfo>
-        <NewsLetterInfo>Language</NewsLetterInfo>
-        <LanguageList>
-          English
-          <DownArrowAlt width="20px" />
-        </LanguageList>
-        <NewsLetterInfo>Gender</NewsLetterInfo>
-        <GenderList>
-          - Select -
-          <DownArrowAlt width="20px" />
-        </GenderList>
-        <NewsLetterInfo>When did you come about?</NewsLetterInfo>
-        <DateOfBirth>
-          <DayList>
-            1
-            <DownArrowAlt width="20px" />
-          </DayList>
-          <MonthList>
-            Jan
-            <DownArrowAlt width="20px" />
-          </MonthList>
-          <YearList>
-            1994
-            <DownArrowAlt width="20px" />
-          </YearList>
-        </DateOfBirth>
-        <NewsLetterInfo>Where do you live?</NewsLetterInfo>
-        <LocateList>
-          South Korea
-          <DownArrowAlt width="20px" />
-        </LocateList>
-        <NewsLetterInfo>
-          What do you like?
-          <div>
-            Or rather, do you like us because we are who we are, because we do
-            what we do or because we smell good, just like our bags? Select your
-            favorite topics here so we can do our best to get to know each other
-            better. Thanks a million!
-          </div>
-        </NewsLetterInfo>
+        {LETTER_DATA.map((el) => {
+          return (
+            <Fragment key={el.id}>
+              <NewsLetterInfo>{el.name}</NewsLetterInfo>
+              <div>{INPUT[el.id]}</div>
+            </Fragment>
+          );
+        })}
       </MypageListInfo>
     </>
   );
@@ -68,12 +38,12 @@ const NewsLetterInfo = styled.div`
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 500;
+`;
 
-  div {
-    font-size: 13px;
-    color: gray;
-    font-style: italic;
-  }
+const LikeInfo = styled.div`
+  font-size: 13px;
+  color: gray;
+  font-style: italic;
 `;
 
 const LanguageList = styled.div`
@@ -136,3 +106,48 @@ const LocateList = styled.div`
   cursor: pointer;
   ${flexBox("space-between", "default", "default")};
 `;
+
+const INPUT = {
+  1: (
+    <LanguageList>
+      English
+      <DownArrowAlt width="20px" />
+    </LanguageList>
+  ),
+  2: (
+    <GenderList>
+      - Select -
+      <DownArrowAlt width="20px" />
+    </GenderList>
+  ),
+  3: (
+    <DateOfBirth>
+      <DayList>
+        1
+        <DownArrowAlt width="20px" />
+      </DayList>
+      <MonthList>
+        Jan
+        <DownArrowAlt width="20px" />
+      </MonthList>
+      <YearList>
+        1994
+        <DownArrowAlt width="20px" />
+      </YearList>
+    </DateOfBirth>
+  ),
+  4: (
+    <LocateList>
+      South Korea
+      <DownArrowAlt width="20px" />
+    </LocateList>
+  ),
+  5: (
+    <LikeInfo>
+      Or rather, do you like us because we are who we are, because we do what we
+      do or because we smell good, just like our bags? Select your favorite
+      topics here so we can do our best to get to know each other better. Thanks
+      a million!
+    </LikeInfo>
+  ),
+};

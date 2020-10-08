@@ -1,6 +1,5 @@
 import React from "react";
 import ProductCount from "./ProductCount";
-import "../Cart.scss";
 import styled from "styled-components";
 import { Delete } from "@styled-icons/material";
 

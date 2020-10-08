@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 
 function Orders() {
   return (
@@ -10,13 +10,6 @@ function Orders() {
   );
 }
 export default Orders;
-
-const flexBox = (justify, align, content) => css`
-  display: flex;
-  justify-content: ${justify || "default"};
-  align-items: ${align || "default"};
-  align-content: ${content || "default"};
-`;
 
 const OrdersInfo = styled.span`
   display: block;

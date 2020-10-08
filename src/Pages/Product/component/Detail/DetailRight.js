@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import SelectColor from "./SelectColor";
 import DropDown from "./DropDown";
 import Cart from "./Cart";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 function DetailRight() {
   return (

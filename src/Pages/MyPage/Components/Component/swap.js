@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 
 function Swap() {
   return (
@@ -12,13 +12,6 @@ function Swap() {
   );
 }
 export default Swap;
-
-const flexBox = (justify, align, content) => css`
-  display: flex;
-  justify-content: ${justify || "default"};
-  align-items: ${align || "default"};
-  align-content: ${content || "default"};
-`;
 
 const OrdersInfo = styled.span`
   display: block;

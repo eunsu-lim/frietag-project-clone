@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import { ArrowDownShort } from "@styled-icons/bootstrap/ArrowDownShort";
+import { Save } from "@styled-icons/boxicons-regular/Save";
 import { DownArrowAlt } from "@styled-icons/boxicons-solid/DownArrowAlt";
+import { ArrowReturnLeft } from "@styled-icons/bootstrap/ArrowReturnLeft";
 
 function Addresses() {
   const [data, setData] = useState([]);
@@ -15,48 +16,48 @@ function Addresses() {
   }, []);
 
   return (
-    <MyPageList>
-      <h3>
-        ADDRESSES
-        <ArrowDownShort width="20px" />
-      </h3>
-      <MypageListInfo>
-        <Address>
-          <AddressInfoHeader>SHIPPING ADDRESS</AddressInfoHeader>
-          <AddressInfoList>Country / Region</AddressInfoList>
-          <LocateList>
-            South Korea
-            <DownArrowAlt width="20px" />
-          </LocateList>
-          {data.map((el) => {
-            return (
-              <>
-                <AddressInfoList>{el.name}</AddressInfoList>
-                <Input />
-              </>
-            );
-          })}
-          <FormSubmitBtn type="submit" value="SAVE CHANGES" />
-          <InputCancel type="reset" value="CANCEL CHANGES" />
-        </Address>
-        <Address>
-          <AddressInfoHeader>BILLING ADDRESS</AddressInfoHeader>
-          <AddressInfoList>Country / Region</AddressInfoList>
-          <LocateList>
-            South Korea
-            <DownArrowAlt width="20px" />
-          </LocateList>
-          {data.map((el) => {
-            return (
-              <>
-                <AddressInfoList>{el.name}</AddressInfoList>
-                <Input />
-              </>
-            );
-          })}
-        </Address>
-      </MypageListInfo>
-    </MyPageList>
+    <MypageListInfo>
+      <Address>
+        <AddressInfoHeader>SHIPPING ADDRESS</AddressInfoHeader>
+        <AddressInfoList>Country / Region</AddressInfoList>
+        <LocateList>
+          South Korea
+          <DownArrowAlt width="20px" />
+        </LocateList>
+        {data.map((el) => {
+          return (
+            <>
+              <AddressInfoList>{el.name}</AddressInfoList>
+              <Input />
+            </>
+          );
+        })}
+        <FormSubmitBtn>
+          <Save width="20px" color="white" />
+          &nbsp;SAVE CHANGES
+        </FormSubmitBtn>
+        <InputCancel>
+          <ArrowReturnLeft width="20px" />
+          &nbsp;CANCEL CHANGES
+        </InputCancel>
+      </Address>
+      <Address>
+        <AddressInfoHeader>BILLING ADDRESS</AddressInfoHeader>
+        <AddressInfoList>Country / Region</AddressInfoList>
+        <LocateList>
+          South Korea
+          <DownArrowAlt width="20px" />
+        </LocateList>
+        {data.map((el) => {
+          return (
+            <>
+              <AddressInfoList>{el.name}</AddressInfoList>
+              <Input />
+            </>
+          );
+        })}
+      </Address>
+    </MypageListInfo>
   );
 }
 export default Addresses;
@@ -66,17 +67,6 @@ const flexBox = (justify, align, content) => css`
   justify-content: ${justify || "default"};
   align-items: ${align || "default"};
   align-content: ${content || "default"};
-`;
-
-const MyPageList = styled.div`
-  border-top: 1px solid #000;
-
-  h3 {
-    margin: 17px 0;
-    font-size: 17px;
-    cursor: pointer;
-    ${flexBox("space-between", "default", "default")};
-  }
 `;
 
 const MypageListInfo = styled.div`
@@ -128,7 +118,7 @@ const Input = styled.input`
   }
 `;
 
-const FormSubmitBtn = styled.input`
+const FormSubmitBtn = styled.button`
   background-color: #000;
   margin-bottom: 20px;
   padding: 10px 20px;
@@ -140,13 +130,14 @@ const FormSubmitBtn = styled.input`
   color: #fff;
 `;
 
-const InputCancel = styled.input`
+const InputCancel = styled.button`
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   border: none;
+  outline: none;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   cursor: pointer;
   background-color: transparent;
 `;

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
-import { ArrowDownShort } from "@styled-icons/bootstrap/ArrowDownShort";
 import { DownArrowAlt } from "@styled-icons/boxicons-solid/DownArrowAlt";
+import { ArrowReturnLeft } from "@styled-icons/bootstrap/ArrowReturnLeft";
+import { Save } from "@styled-icons/boxicons-regular/Save";
 
 function UserNamePw() {
   return (
@@ -17,8 +18,14 @@ function UserNamePw() {
         Korean
         <DownArrowAlt width="20px" />
       </LocateList>
-      <FormSubmitBtn type="submit" value="SAVE CHANGES" />
-      <InputCancel type="reset" value="CANCEL CHANGES" />
+      <FormSubmitBtn>
+        <Save width="20px" color="white" />
+        &nbsp;SAVE CHANGES
+      </FormSubmitBtn>
+      <InputCancel>
+        <ArrowReturnLeft width="20px" />
+        &nbsp;CANCEL CHANGES
+      </InputCancel>
     </MypageListInfo>
   );
 }
@@ -78,7 +85,7 @@ const NewsLetterInfo = styled.div`
   }
 `;
 
-const FormSubmitBtn = styled.input`
+const FormSubmitBtn = styled.button`
   background-color: #000;
   margin-bottom: 20px;
   padding: 10px 20px;
@@ -90,13 +97,14 @@ const FormSubmitBtn = styled.input`
   color: #fff;
 `;
 
-const InputCancel = styled.input`
+const InputCancel = styled.button`
   display: block;
   margin-bottom: 50px;
   border: none;
+  outline: none;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   cursor: pointer;
   background-color: transparent;
 `;

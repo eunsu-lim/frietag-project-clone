@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CartItem from "./Component/CarItem";
-import "./Cart.scss";
 import styled from "styled-components";
 import { ShoppingCart } from "@styled-icons/material";
 
