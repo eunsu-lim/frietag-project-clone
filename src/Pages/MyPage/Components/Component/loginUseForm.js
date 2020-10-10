@@ -19,8 +19,14 @@ const useForm = (loginValidate) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setErrors(loginValidate(values));
+
+    fetch("http://10.58.7.117/user/signup", {
+      method: "PETCH",
+      body: JSON.stringify({
+        password: values.password,
+      }),
+    }).then((response) => response.json());
   };
 
   const valuesInput = useRef();

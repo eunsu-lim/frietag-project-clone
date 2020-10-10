@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import MY_PAGE_DATA from "./Components/Data/myPageData";
 import MyPageList from "./Components/myPageList";
 import Header from "../../Components/Header/Header";
 function MyPage() {
+  const history = useHistory();
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const URL = window.location.href;
+    setToken(URL.slice(URL.indexOf("=") + 1));
+    history.push("/MyPage");
+  }, []);
+
+  const fetchData = () => {
+    localStorage.setItem("token", token);
+    fetch("http://10.58.7.117:8001/user/activate", {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    }).then((res) => console.log(res));
+  };
+
+  useEffect(fetchData, [token]);
   return (
     <>
       <Header />

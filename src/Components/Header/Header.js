@@ -43,8 +43,8 @@ export default function Header() {
 }
 
 const Main = styled.main`
-  position: relative;
   position: fixed;
+  z-index: 1000;
 `;
 
 const HeaderContainer = styled.header`
