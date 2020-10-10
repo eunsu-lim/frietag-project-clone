@@ -14,7 +14,9 @@ function MyPageList(props) {
     <>
       <CategoryList onClick={() => setDropdown(!dropdown)}>
         {props.el.name}
-        <ArrowDownShort width="20px" />
+        <Rotate dropdown={dropdown}>
+          <ArrowDownShort width="20px" />
+        </Rotate>
       </CategoryList>
       {dropdown && DROP_DOWN_LIST[props.el.id]}
     </>
@@ -39,6 +41,14 @@ const CategoryList = styled.div`
   cursor: pointer;
   ${flexBox("space-between", "default", "default")};
   flex-direction: colume;
+`;
+
+const Rotate = styled.span`
+  ${({ dropdown }) =>
+    dropdown &&
+    `
+  transform: rotate(180deg);
+  `};
 `;
 
 const DROP_DOWN_LIST = {

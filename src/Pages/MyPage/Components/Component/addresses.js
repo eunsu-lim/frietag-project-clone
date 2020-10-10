@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { Save } from "@styled-icons/boxicons-regular/Save";
 import { DownArrowAlt } from "@styled-icons/boxicons-solid/DownArrowAlt";
 import { ArrowReturnLeft } from "@styled-icons/bootstrap/ArrowReturnLeft";
+import { IndeterminateCheckBox } from "styled-icons/material-twotone";
 
 function Addresses() {
   const [data, setData] = useState([]);
@@ -24,10 +25,10 @@ function Addresses() {
           South Korea
           <DownArrowAlt width="20px" />
         </LocateList>
-        {data.map((el) => {
+        {data.map((el, index) => {
           return (
             <>
-              <AddressInfoList>{el.name}</AddressInfoList>
+              <AddressInfoList key={index}>{el.name}</AddressInfoList>
               <Input />
             </>
           );
@@ -48,10 +49,10 @@ function Addresses() {
           South Korea
           <DownArrowAlt width="20px" />
         </LocateList>
-        {data.map((el) => {
+        {data.map((el, index) => {
           return (
             <>
-              <AddressInfoList>{el.name}</AddressInfoList>
+              <AddressInfoList key={index}>{el.name}</AddressInfoList>
               <Input />
             </>
           );
@@ -62,15 +63,9 @@ function Addresses() {
 }
 export default Addresses;
 
-const flexBox = (justify, align, content) => css`
-  display: flex;
-  justify-content: ${justify || "default"};
-  align-items: ${align || "default"};
-  align-content: ${content || "default"};
-`;
-
 const MypageListInfo = styled.div`
-  ${flexBox("default", "default", "space-between")};
+  display: flex;
+  align-content: space-between;
   width: 94%;
   margin-right: -100%;
   margin-left: 0;
@@ -102,7 +97,7 @@ const LocateList = styled.div`
   font-size: 14px;
   font-weight: 300;
   cursor: pointer;
-  ${flexBox("space-between", "default", "default")};
+  ${({ theme }) => theme.flex("space-between", "", "")}
 `;
 
 const Input = styled.input`

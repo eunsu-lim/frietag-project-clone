@@ -2,16 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import MY_PAGE_DATA from "./Components/Data/myPageData";
 import MyPageList from "./Components/myPageList";
-
+import Header from "../../Components/Header/Header";
 function MyPage() {
   return (
     <>
+      <Header />
       <Main>
-        <Header>
+        <MainHeader>
           <div>
             <h1>HOI KOJAE</h1>
           </div>
-        </Header>
+        </MainHeader>
         <Container>
           <Section>
             {MY_PAGE_DATA.map((el, index) => {
@@ -31,7 +32,7 @@ const Main = styled.main`
   padding-top: 100px;
 `;
 
-const Header = styled.header`
+const MainHeader = styled.header`
   display: block;
   height: 110px;
   div {
