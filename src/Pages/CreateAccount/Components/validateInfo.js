@@ -1,24 +1,25 @@
 export default function validateInfo(values) {
-  let errors = {};
+  const isNameValid = values.username.length > 4;
+  const isEmailValid = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+    values.email
+  );
+  const isComfirmEmailValid = values.email === values.confirmEmail;
 
-  if (!values.username.trim()) {
-    errors.username = "Username field is required.";
-  } else if (values.username.length < 2) {
-    errors.username = "Please write at least two letters.";
-  }
-
-  if (!values.email) {
-    errors.email = " E-mail address field is required.";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-    errors.email = "Email address is incalid";
-  }
-
-  if (values.confirmEmail !== values.email) {
-    errors.confirmEmail =
-      " Your e-mail address and confirmed e-mail address must match.";
-  } else if (!values.confirmEmail.trim()) {
-    errors.confirmEmail = " Confirm e-mail address field is required.";
-  }
-
-  return errors;
+  return {
+    username: isNameValid
+      ? ""
+      : values.username
+      ? "Please write at least 4 letters."
+      : "Username field is required.",
+    email: isEmailValid
+      ? ""
+      : values.email
+      ? "E-mail address field is required."
+      : "Email address is required",
+    confirmEmail: isComfirmEmailValid
+      ? ""
+      : !values.confirmEmail
+      ? "Confirm e-mail address field is required."
+      : "Your e-mail address and confirmed e-mail address must match.",
+  };
 }

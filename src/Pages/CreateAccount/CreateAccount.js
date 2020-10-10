@@ -10,6 +10,7 @@ function CreateAccount() {
   function submitForm() {
     setIsSubmitted(true);
   }
+
   return (
     <>
       <Header />
