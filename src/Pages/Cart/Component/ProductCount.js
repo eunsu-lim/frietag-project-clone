@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Counter({ id, handleCount, count }) {
+export default function Counter({ id, index, handleCount, count }) {
   return (
     <ProductCount>
       <button
-        onClick={() => handleCount(id, "minusBtn")}
+        onClick={() => handleCount(id, "minusBtn", index)}
         disabled={count <= 1 && "disabled"}
         className="minusBtn"
       ></button>
       <span>{count}</span>
       <button
-        onClick={() => handleCount(id, "plusBtn")}
+        onClick={() => handleCount(id, "plusBtn", index)}
         className="plusBtn"
       ></button>
     </ProductCount>
