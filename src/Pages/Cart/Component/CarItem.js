@@ -3,36 +3,26 @@ import ProductCount from "./ProductCount";
 import styled from "styled-components";
 import { Delete } from "@styled-icons/material";
 
-export default function CarItem({
-  product,
-  handleCount,
-  products,
-  setProducts,
-}) {
-  const handleRemove = (id) => {
-    const temp = products;
-    const removeItem = temp.filter((item) => item.id !== id);
-    setProducts(removeItem);
-  };
-
+export default function CarItem({ product, handleCount, handleRemove, index }) {
   return (
     <CartItem>
       <CartItemBox>
         <ProductName>
-          {product.title} - {product.size}
+          {product.name} - {product.size}
         </ProductName>
         <ProductImgBox>
-          <ProductImg src={product.url} />
+          <ProductImg src={`https://ifh.cc/g/${product.image.split("-")[1]}`} />
         </ProductImgBox>
         <ProductCount
+          index={index}
           count={product.count}
           handleCount={handleCount}
-          id={product.id}
+          id={product.product_id}
         />
         <ProductPrice>
           ₩ {(product.count * product.price).toLocaleString()}
         </ProductPrice>
-        <ProductDel onClick={() => handleRemove(product.id)} />
+        <ProductDel onClick={() => handleRemove(product.product_id, index)} />
       </CartItemBox>
     </CartItem>
   );
@@ -64,7 +54,7 @@ const ProductImgBox = styled.div`
 const ProductImg = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
 `;
 
 const ProductPrice = styled.span`

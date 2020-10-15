@@ -1,49 +1,85 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import URL from "../../Config/Url";
 import Header from "../../Components/Header/Header";
 import CartItem from "./Component/CarItem";
-import styled from "styled-components";
 import { ShoppingCart } from "@styled-icons/material";
 
 export default function Cart() {
   const [products, setProducts] = useState([]);
-  const [price, setTotalPrice] = useState(0);
-  const [amount, setTotalAmount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
 
-  const handleCount = (id, className) => {
-    const productsCopy = products;
-    const clickedItem = products.find((item) => item.id === id);
-    const clickedIdx = products.findIndex((item) => item.id === id);
+  const handleCount = (id, className, index) => {
+    const productsCopy = [...products];
+    const clickedItem = products.find((item) => item.product_id === id);
+    const clickedIdx = products.findIndex((item) => item.product_id === id);
     productsCopy[clickedIdx] = clickedItem;
+
     if (className === "plusBtn") {
       clickedItem.count++;
+      updateFech("+", index);
       setProducts([...productsCopy]);
     } else {
       clickedItem.count--;
+      updateFech("-", index);
       setProducts([...productsCopy]);
     }
   };
 
+  const updateFech = async (btn, index) => {
+    try {
+      const result = await axios.patch(
+        `${URL}/cart/${products[index].id}`,
+        {
+          cart_button: btn,
+        },
+        { headers: { Authorization: localStorage.getItem("token") } }
+      );
+    } catch (err) {}
+  };
+
+  const handleRemove = async (id, index) => {
+    try {
+      const result = await axios.delete(
+        `${URL}/cart/${products[index].id}`,
+        {
+          headers: { Authorization: localStorage.getItem("token") },
+        },
+        {}
+      );
+    } catch (err) {}
+
+    const temp = [...products];
+    const filteredItems = temp.filter((item) => item.product_id !== id);
+    setProducts(filteredItems);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(`http://localhost:3000/Data/CartData.json`);
-      setProducts(result.data.product);
+      const {
+        data: { cart_list },
+      } = await axios.get(`${URL}/cart`, {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+      setProducts(cart_list);
     };
     fetchData();
   }, []);
 
   useEffect(() => {
-    const price = products.reduce((acc, item) => {
+    const totalPrice = products.reduce((acc, item) => {
       return acc + item.count * item.price;
     }, 0);
-    setTotalPrice(price);
+    setTotalPrice(totalPrice);
   }, [products]);
 
   useEffect(() => {
-    const amount = products.reduce((acc, item) => {
+    const totalAmount = products.reduce((acc, item) => {
       return acc + item.count;
     }, 0);
-    setTotalAmount(amount);
+    setTotalAmount(totalAmount);
   }, [products]);
 
   return (
@@ -51,23 +87,31 @@ export default function Cart() {
       <Header />
       <CartBox>
         <CartTitle>SHOPPING CART</CartTitle>
-        <CartCount>{amount} Items</CartCount>
-        <CartList>
-          {products.map((cartProduct) => {
-            return (
-              <CartItem
-                key={cartProduct.id}
-                product={cartProduct}
-                handleCount={(id, className) => handleCount(id, className)}
-                products={products}
-                setProducts={setProducts}
-              />
-            );
-          })}
-        </CartList>
+        <CartCount>{totalAmount} Items</CartCount>
+
+        {products.length > 0 ? (
+          <CartList>
+            {products.map((cartProduct, index) => {
+              return (
+                <CartItem
+                  index={index}
+                  key={index}
+                  product={cartProduct}
+                  handleCount={handleCount}
+                  setProducts={setProducts}
+                  handleRemove={handleRemove}
+                />
+              );
+            })}
+          </CartList>
+        ) : (
+          <EmptyCartList>
+            <li>장바구니 상품이 없습니다.</li>
+          </EmptyCartList>
+        )}
         <CartTotal>
           <CartText>TOTAL</CartText>
-          <TotalPrice>₩ {price.toLocaleString()}</TotalPrice>
+          <TotalPrice>₩ {totalPrice.toLocaleString()}</TotalPrice>
         </CartTotal>
         <CartBottom>
           <Back>← BACK TO STORE</Back>
@@ -105,6 +149,16 @@ const CartList = styled.ul`
   flex-direction: column;
   margin-top: 8px;
   border-top: 1px solid #ececec;
+`;
+
+const EmptyCartList = styled.ul`
+  display: flex;
+  margin-top: 24px;
+  height: 280px;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #cecece;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CartTotal = styled.div`
