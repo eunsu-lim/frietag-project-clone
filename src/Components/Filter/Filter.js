@@ -12,7 +12,6 @@ export default function Filter({ filterHandler, removeAllItems }) {
     const response = await fetch("http://localhost:3000/Data/ProductData.json");
     const { product } = await response.json();
     const colorFilter = product[0].sub.map(el => el.color);
-    // const mapping = [...response, color];
 
     const colorCount = colorFilter.reduce((acc, el) => {
       Object.keys(acc).includes(el) ? acc[el]++ : (acc[el] = 1);

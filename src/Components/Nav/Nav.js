@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import Footer from "./Footer";
 import NavList from "./NavList";
 import NAVIGATION from "./NavListData";
-import NavLogin from "../Nav/Login";
-import { Search, LocationOn } from "@styled-icons/material";
-import { User } from "@styled-icons/boxicons-solid/User";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { User } from "@styled-icons/boxicons-solid/User";
+import { Search, LocationOn } from "@styled-icons/material";
+import NavLogin from "../Nav/Login";
 
 export default function Nav() {
   const navList = NAVIGATION;
@@ -43,12 +43,14 @@ export default function Nav() {
             <span className="navSpan">SEARCH</span>
           </span>
         </li>
-        <li>
-          <span>
-            <LocationOn size="25" />
-            <span className="navSpan">STORES</span>
-          </span>
-        </li>
+        <Link to="/Store">
+          <li>
+            <span>
+              <LocationOn size="25" />
+              <span className="navSpan">STORES</span>
+            </span>
+          </li>
+        </Link>
       </TopSection>
       {navList.map((category, index) => {
         return <NavList category={category} key={index} index={index} />;

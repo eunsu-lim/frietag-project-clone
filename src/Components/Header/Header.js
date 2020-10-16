@@ -17,7 +17,9 @@ export default function Header({ openFilter, filterHandler, removeAllItems }) {
   return (
     <Main>
       <HeaderContainer>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <IconBox menu onClick={() => setIsNav(!isNav)} isNav={isNav}>
           <MenuOutline size="24" />
         </IconBox>

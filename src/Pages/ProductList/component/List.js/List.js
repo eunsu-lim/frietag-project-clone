@@ -10,7 +10,7 @@ function List({ productId, productTitle, productPrice, productSub }) {
           <a href="#/">{productTitle}</a>
         </ListTitle>
         <ListInfo>
-          <h3>MALE SHIRT,&nbsp;</h3>
+          <h3>FEMALE SCOOP NECK,&nbsp;</h3>
           <span>￦{productPrice}</span>
         </ListInfo>
       </ListDescription>

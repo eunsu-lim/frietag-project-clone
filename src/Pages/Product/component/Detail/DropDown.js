@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-function DropDown() {
+function DropDown({ size }) {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = e => {
@@ -15,8 +15,8 @@ function DropDown() {
       <SizeLabel>Size</SizeLabel>
       <div>
         <SizeSelector onChange={handleChange} name="" id="">
-          {dropDownOptions.map(el => (
-            <option value={el.value}>{el.value}</option>
+          {size.map(el => (
+            <option value={el}>{el}</option>
           ))}
         </SizeSelector>
       </div>

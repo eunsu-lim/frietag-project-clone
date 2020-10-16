@@ -7,12 +7,11 @@ import Header from "../../Components/Header/Header";
 
 function Product(props) {
   const [productId, setProductId] = useState(props.match.params.id);
+  const [selected, setSelected] = useState({});
   const [items, setItems] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch(
-      "http://localhost:3000/Data/postManProductList.json"
-    );
+    const response = await fetch("http://10.58.3.66:8000/product");
     const { message } = await response.json();
 
     const chunk = (arr, size) =>
@@ -26,7 +25,8 @@ function Product(props) {
     // firstArr.unshift(firstArr[1]);
     // firstArr.pop();
 
-    setItems(firstArr);
+    setItems(message);
+    setSelected(message[productId - 1]);
   };
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function Product(props) {
     <ProductPage>
       <Header />
       <Title />
-      <Detail productId={productId} items={items} />
+      <Detail productId={productId} items={items} selected={selected} />
 
       <ExtraInfo />
     </ProductPage>

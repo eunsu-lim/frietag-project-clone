@@ -4,22 +4,22 @@ import DropDown from "./DropDown";
 import Cart from "./Cart";
 import styled from "styled-components";
 
-function DetailRight({ product, allItem, url, items }) {
+function DetailRight({ selected, allItem, url, items }) {
   return (
     <RightBox>
       <Header>
-        <h3>{allItem.name}</h3>
+        <h3>{allItem[0]?.name}</h3>
         <span>
-          {allItem.description}, ￦{allItem.price}
+          {allItem[0]?.description}, ￦{allItem[0]?.price}
         </span>
       </Header>
       <SelectColor
-        productId={allItem.id}
+        selected={selected}
         allItem={allItem}
         url={url}
         items={items}
       />
-      <DropDown />
+      <DropDown size={allItem[0]?.size} />
       <Cart />
     </RightBox>
   );

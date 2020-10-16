@@ -4,12 +4,10 @@ import DetailLeft from "./DetailLeft";
 import DetailRight from "./DetailRight";
 import styled from "styled-components";
 
-function Detail({ productId, items }) {
-  const [selected, setSelected] = useState({});
+function Detail({ productId, items, selected }) {
+  // const [selected, setSelected] = useState({});
   const [allItem, setAllItem] = useState([]);
   const { id } = useParams();
-
-  console.log(id);
 
   // useEffect(() => {
   //   setTimeout(() => {
@@ -28,16 +26,12 @@ function Detail({ productId, items }) {
       fetch(`http://10.58.3.66:8000/product/${id}`)
         .then(response => response.json())
         .then(res => {
-          const allShirts = res;
-          setAllItem(res);
-          setSelected(res[productId - 1]);
+          // const allShirts = res;
+          setAllItem(res.message);
+          // setSelected(res.message[productId - 1]);
         });
-    }, 2000);
+    }, 1000);
   }, []);
-
-  useEffect(() => {
-    console.log(allItem);
-  }, [allItem]);
 
   if (
     // !selected ||
@@ -53,12 +47,13 @@ function Detail({ productId, items }) {
     <DetailContainer>
       <DetailBlack>
         <DetailWhite>
-          <DetailLeft url={allItem.detailImage} />
+          <DetailLeft url={allItem[0].detailImage} />
           <DetailRight
-            url={allItem.detailImage}
+            url={allItem[0].detailImage}
             allItem={allItem}
-            product={selected}
+            // product={selected}
             items={items}
+            selected={selected}
           />
         </DetailWhite>
       </DetailBlack>

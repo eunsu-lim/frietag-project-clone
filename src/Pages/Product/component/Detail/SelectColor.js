@@ -2,8 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-function SelectColor({ allItem, productId, items }) {
-  const color = productId;
+function SelectColor({ allItem, selected, items }) {
   const history = useHistory();
 
   const handleChange = e => {
@@ -11,24 +10,25 @@ function SelectColor({ allItem, productId, items }) {
     window.location.reload();
   };
 
-  console.log(items);
-
   return (
     <Color>
       <form>
         <ColorLabel htmlFor="">Colors</ColorLabel>
         <div>
           <BorderContainer>
-            {items.map(el => (
-              <Border className={color === el.id && "selected"}>
-                <ImgColor
-                  onClick={() => handleChange(el.id)}
-                  // src={`https://ifh.cc/g/${mainImage[0].split("-")[1]}`}
-                  src={`https://ifh.cc/g/${el[0].mainImage.split("-")[1]}`}
-                  alt=""
-                />
-              </Border>
-            ))}
+            {items
+              .filter(el => el.seriesName === allItem[0]?.title)
+              .map((el, i) => {
+                return (
+                  <Border className={el.id === selected.id && "selected"}>
+                    <ImgColor
+                      onClick={() => handleChange(el.id)}
+                      src={`https://ifh.cc/g/${el.mainImage.split("-")[1]}`}
+                      alt="Product Color"
+                    />
+                  </Border>
+                );
+              })}
           </BorderContainer>
         </div>
       </form>

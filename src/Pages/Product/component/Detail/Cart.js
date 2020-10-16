@@ -1,10 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { URL } from "../../../../Config/Url";
+import { useHistory } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
 import { FiPlusSquare, FiMinusSquare } from "react-icons/fi";
-import styled from "styled-components";
 
 function Cart() {
   const [count, setCount] = useState(1);
+  const history = useHistory();
+
+  const fetchData = async () => {
+    const response = await fetch("http://10.58.3.66:8000/product");
+    const { message } = await response.json();
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleCart = () => {
+    fetch(`${URL}/Cart`, {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        quantity: count,
+      }),
+    });
+  };
 
   const increment = () => {
     setCount(count + 1);
@@ -14,7 +38,7 @@ function Cart() {
     if (count > 1) {
       setCount(count - 1);
     } else {
-      alert("COME ON, WAKE UP!");
+      setCount(1);
     }
   };
 
@@ -33,7 +57,7 @@ function Cart() {
           size="35"
         />
       </ProductCount>
-      <CartBtn>
+      <CartBtn onClick={() => handleCart()}>
         <HiShoppingCart size="25" />
         <span>ADD TO CART</span>
       </CartBtn>

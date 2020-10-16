@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import React from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import CreateAccount from "./Pages/CreateAccount/CreateAccount";
 import Cart from "./Pages/Cart/Cart";
 import MyPage from "./Pages/MyPage/MyPage";

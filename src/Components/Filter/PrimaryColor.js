@@ -36,7 +36,6 @@ const Color = styled.div`
   h5 {
     font-size: 14px;
     cursor: pointer;
-    /* ${({ choose }) => (choose ? `color: red` : `color: black`)} */
 
     &:hover {
       color: gray;

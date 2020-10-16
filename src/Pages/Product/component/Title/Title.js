@@ -7,11 +7,24 @@ function Title() {
   const [allItem, setAllItem] = useState([]);
   const { id } = useParams();
 
+  // const fetchData = async () => {
+  //   const response = await fetch(`http://10.58.3.66:8000/product/${id}`);
+  //   const { message } = await response.json();
+  //   setAllItem(message);
+  // };
+
+  // useEffect(() => {
+  // }, [allItem]);
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
     fetch(`http://10.58.3.66:8000/product/${id}`)
       .then(response => response.json())
       .then(res => {
-        setAllItem(res);
+        setAllItem(res.message);
       });
   }, []);
 
@@ -36,10 +49,10 @@ function Title() {
           </Link>
         </span>
       </HeaderTopLeft>
-      <HeaderLeft>{allItem.title}</HeaderLeft>
+      <HeaderLeft>{allItem[0]?.title}</HeaderLeft>
       <HeaderBottomLeft>
-        <h3>FEMALE SCOOP NECK, ￦{allItem.price}</h3>
-        <span> {allItem.description}</span>
+        <h3>FEMALE SCOOP NECK, ￦{allItem[0]?.price}</h3>
+        <span> {allItem[0]?.description}</span>
       </HeaderBottomLeft>
     </HeaderContainer>
   );

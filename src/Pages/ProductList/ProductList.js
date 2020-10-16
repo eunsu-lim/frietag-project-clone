@@ -12,9 +12,7 @@ function ProductList() {
   const [selectedFilter, setSelectedFilter] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch(
-      "http://localhost:3000/Data/postManProductList.json"
-    );
+    const response = await fetch("http://10.58.3.66:8000/product");
     const { message } = await response.json();
 
     const chunk = (arr, size) =>
@@ -33,12 +31,20 @@ function ProductList() {
   };
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  useEffect(() => {
     fetchData();
   }, []);
+
+  // const filterHandler = color => {
+  //   selectedFilter.includes(color)
+  //     ? setSelectedFilter(selectedFilter.filter(el => el !== color))
+  //     : setSelectedFilter([...selectedFilter, color]);
+  // };
+
+  // useEffect(() => {
+  //   selectedFilter.length &&
+  //     setFilter(data[0].sub.filter(el => selectedFilter.includes(el.color)));
+  //   !selectedFilter.length && data.length && setFilter(data[0].sub);
+  // }, [selectedFilter]);
 
   const filterHandler = color => {
     selectedFilter.includes(color)
@@ -70,7 +76,7 @@ function ProductList() {
       <ProductListPage>
         <Title
           toggleFilter={e => toggleFilter(e)}
-          productCategory="APPREL MALE"
+          productCategory="APPREL FEMALE"
           categoryName={data.length === 2 && data[0][0].categoryName}
         />
         {data.map(el => (
@@ -78,7 +84,7 @@ function ProductList() {
             <List
               key={el[0].seriesName}
               productTitle={el[0].seriesName}
-              productSubTitle="APPREL MALE"
+              productSubTitle="APPREL FEMALE"
               productPrice={Number(el[0].seriesPrice).toLocaleString()}
               productSub={el}
               productId={productId}
@@ -101,4 +107,4 @@ const ProductListPage = styled.section`
     position: absolute;
     right: 0;
   }
-ㅋ`;
+`;
