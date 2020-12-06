@@ -1,68 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# 💻  Frietag 클론 프로젝트 후기
 
-In the project directory, you can run:
 
-### `npm start`
+## <span style="color:#004680"> 📆 &nbsp; 작업 기간 </span>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 2020.10.05 ~ 2020.10.16 (12일간)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## <span style="color:#004680"> 👩‍💻 &nbsp; 팀원 구성 </span>
 
-### `npm test`
+- Front-end (4명) : [고재원](https://velog.io/@lets_gojae), [김상준](https://velog.io/@realryankim), [이지형](https://velog.io/@hyounglee), [임은수](https://velog.io/@limes)
+- Back-end (2명) : [김수현](https://velog.io/@finelinefe), [정다솜](https://velog.io/@dnpxm387)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## <span style="color:#004680"> 🛠 &nbsp; 기술 스택 </span>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Back-end
+- Python, Django
+- PyJWT, Bcrypt
+- MySQL
+Front-end
+- React, React hooks
+- Javascript(ES6+)
+- styled-component
+Tool
+- Github
+- Trello
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## <span style="color:#004680"> 🖥 &nbsp; 기능 구현 사항 </span>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 메인 페이지
+  - navigation bar 
 
-### `npm run eject`
+- 스토어 페이지
+  - Google Map Library
+  - Google Map Customising
+  - faker.js, randomLocation Library
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- 회원가입, 로그인 페이지
+  - Back-end API 통신
+  - Validation
+  
+- 상품 리스트, 상세 페이지
+  - Category 제품 정렬, filtering
+  - 각 제품별 상세페이지
+  - Filter 기능 (Back-end API) 가격별 기능 추가
+ 
+- **장바구니 페이지**
+  - **상품 추가 및 삭제**
+ 
+- **결제 페이지**
+  - **레이아웃**(레이아웃만 구현)
+  
